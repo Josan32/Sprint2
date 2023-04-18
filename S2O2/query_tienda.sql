@@ -108,7 +108,13 @@ select producto.nombre from tienda.producto, tienda.fabricante where fabricante.
 # Llista el nom del producte més car del fabricant Lenovo.
 select max(producto.nombre) as 'producto mas caro Lenovo' from tienda.producto, tienda.fabricante where fabricante.nombre = 'Lenovo';
 
+# Llista el nom del producte més barat del fabricant Hewlett-Packard.
+select producto.nombre, precio, fabricante.nombre as fabricante from producto join fabricante on producto.codigo_fabricante = fabricante.codigo 
+where fabricante.nombre = "Hewlett-Packard" order by precio limit 1;
 
+# Retorna tots els productes de la base de dades que tenen un preu major o igual al producte més car del fabricant Lenovo.
+select * from producto join fabricante on producto.codigo_fabricante = fabricante.codigo where precio >= (select MAX(precio) 
+from producto  join fabricante f on (fabricante.codigo = producto.codigo_fabricante) where fabricante.nombre = 'Lenovo');
 
 
 
