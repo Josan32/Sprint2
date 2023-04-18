@@ -1,0 +1,156 @@
+db.createCollection('Comanda', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Comanda',
+      required: ['delivery', 'cantidad', 'precio total', 'producto', 'Clliente'],
+      properties: {
+        delivery: {
+          bsonType: 'bool'
+        },
+        cantidad: {
+          bsonType: 'int'
+        },
+        precio total: {
+          bsonType: 'int'
+        },
+        producto: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['tipo'],
+            properties: {
+              nombre: {
+                bsonType: 'string'
+              },
+              descripcion: {
+                bsonType: 'string'
+              },
+              imagen: {
+                bsonType: 'string'
+              },
+              precio: {
+                bsonType: 'int'
+              },
+              tipo: {
+                enum:
+              },
+              tipo pizza: {
+                enum:
+              }
+            }
+          }
+        },
+        Clliente: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});
+db.createCollection('Tienda', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Tienda',
+      required: ['direccion', 'empleado', 'Comanda'],
+      properties: {
+        direccion: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['calle', 'numero', 'municipio', 'provincia', 'codigo posta'],
+            properties: {
+              calle: {
+                bsonType: 'string'
+              },
+              numero: {
+                bsonType: 'int'
+              },
+              municipio: {
+                bsonType: 'string'
+              },
+              provincia: {
+                bsonType: 'string'
+              },
+              codigo posta: {
+                bsonType: 'int'
+              }
+            }
+          }
+        },
+        empleado: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['nombre', 'apellido', 'nif', 'telefono', 'puesto'],
+            properties: {
+              nombre: {
+                bsonType: 'string'
+              },
+              apellido: {
+                bsonType: 'string'
+              },
+              nif: {
+                bsonType: 'int'
+              },
+              telefono: {
+                bsonType: 'int'
+              },
+              puesto: {
+                enum:
+              }
+            }
+          }
+        },
+        Comanda: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});
+db.createCollection('Clliente', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Clliente',
+      required: ['nombre', 'apellido', 'telefono', 'direccion'],
+      properties: {
+        nombre: {
+          bsonType: 'string'
+        },
+        apellido: {
+          bsonType: 'string'
+        },
+        telefono: {
+          bsonType: 'int'
+        },
+        direccion: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['calle', 'numero', 'municipio', 'provincia', 'codigo posta'],
+            properties: {
+              calle: {
+                bsonType: 'string'
+              },
+              numero: {
+                bsonType: 'int'
+              },
+              municipio: {
+                bsonType: 'string'
+              },
+              provincia: {
+                bsonType: 'string'
+              },
+              codigo posta: {
+                bsonType: 'int'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});

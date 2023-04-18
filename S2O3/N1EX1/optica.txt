@@ -1,0 +1,133 @@
+db.createCollection('Cliente', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Cliente',
+      required: ['nombre', 'telefono', 'correo', 'fecha registro', 'telefono', 'direccion', 'recomendador'],
+      properties: {
+        nombre: {
+          bsonType: 'string'
+        },
+        telefono: {
+          bsonType: 'int'
+        },
+        correo: {
+          bsonType: 'string'
+        },
+        fecha registro: {
+          bsonType: 'date'
+        },
+        telefono: {
+          bsonType: 'int'
+        },
+        direccion: {
+          bsonType: 'string'
+        },
+        recomendador: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});
+db.createCollection('venta/compra', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'venta/compra',
+      required: ['Fecha', 'empleado', 'gafas', 'Cliente'],
+      properties: {
+        Fecha: {
+          bsonType: 'date'
+        },
+        empleado: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['nombre', 'direccion', 'telefono'],
+            properties: {
+              nombre: {
+                bsonType: 'string'
+              },
+              direccion: {
+                bsonType: 'string'
+              },
+              telefono: {
+                bsonType: 'int'
+              }
+            }
+          }
+        },
+        gafas: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['precio', 'graduacion izquierda', 'graduacion derecha', 'tipo montura', 'color montura', 'color cristal drecho', 'color cristal izrd', 'marca'],
+            properties: {
+              precio: {
+                bsonType: 'double'
+              },
+              graduacion izquierda: {
+                bsonType: 'double'
+              },
+              graduacion derecha: {
+                bsonType: 'double'
+              },
+              tipo montura: {
+                bsonType: 'string'
+              },
+              color montura: {
+                bsonType: 'string'
+              },
+              color cristal drecho: {
+                bsonType: 'string'
+              },
+              color cristal izrd: {
+                bsonType: 'string'
+              },
+              marca: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['nombre', 'proveedor'],
+                  properties: {
+                    nombre: {
+                      bsonType: 'string'
+                    },
+                    proveedor: {
+                      bsonType: 'array',
+                      items: {
+                        title: 'object',
+                        required: ['nombre', 'direccion', 'telefono', 'fax', 'nif'],
+                        properties: {
+                          nombre: {
+                            bsonType: 'string'
+                          },
+                          direccion: {
+                            bsonType: 'string'
+                          },
+                          telefono: {
+                            bsonType: 'int'
+                          },
+                          fax: {
+                            bsonType: 'string'
+                          },
+                          nif: {
+                            bsonType: 'string'
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        Cliente: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});

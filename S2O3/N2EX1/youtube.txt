@@ -1,0 +1,154 @@
+db.createCollection('Usuario', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Usuario',
+      required: ['nombre', 'contraseña', 'email', 'fecha nacimiento', 'playlist'],
+      properties: {
+        nombre: {
+          bsonType: 'string'
+        },
+        contraseña: {
+          bsonType: 'string'
+        },
+        email: {
+          bsonType: 'string'
+        },
+        sexo: {
+          bsonType: 'string'
+        },
+        pais: {
+          bsonType: 'string'
+        },
+        fecha nacimiento: {
+          bsonType: 'date'
+        },
+        codigo postal: {
+          bsonType: 'int'
+        },
+        playlist: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['nombre', 'fecha', 'tipo'],
+            properties: {
+              nombre: {
+                bsonType: 'string'
+              },
+              fecha: {
+                bsonType: 'date'
+              },
+              tipo: {
+                enum:
+              }
+            }
+          }
+        },
+        subscripcion: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});
+db.createCollection('canal', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'canal',
+      required: ['nombre', 'descripcion', 'fecha creacion', 'video', 'Usuario'],
+      properties: {
+        nombre: {
+          bsonType: 'string'
+        },
+        descripcion: {
+          bsonType: 'string'
+        },
+        fecha creacion: {
+          bsonType: 'date'
+        },
+        video: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['titulo', 'descripcion', 'nombre archivo', 'duracion', 'thumbnail', 'reproduciones', 'tamaño', 'tipo video', 'etiqueta'],
+            properties: {
+              titulo: {
+                bsonType: 'string'
+              },
+              descripcion: {
+                bsonType: 'string'
+              },
+              nombre archivo: {
+                bsonType: 'string'
+              },
+              duracion: {
+                bsonType: 'decimal'
+              },
+              thumbnail: {
+                bsonType: 'string'
+              },
+              reproduciones: {
+                bsonType: 'int'
+              },
+              tamaño: {
+                bsonType: 'int'
+              },
+              tipo video: {
+                enum:
+              },
+              etiqueta: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['nombre'],
+                  properties: {
+                    nombre: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              },
+              comentario: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['texto', 'fecha', 'usuario'],
+                  properties: {
+                    texto: {
+                      bsonType: 'string'
+                    },
+                    fecha: {
+                      bsonType: 'timestamp'
+                    },
+                    usuario: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              },
+              lik / dislike: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['fecha', 'tipo'],
+                  properties: {
+                    fecha: {
+                      bsonType: 'date'
+                    },
+                    tipo: {
+                      enum:
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        Usuario: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});
